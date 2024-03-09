@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import './gugu.css';
 
-//use client
 const Home = () => {
   const [gugus, setGugus] = useState<string[]>([]);
   const [newGugu, setNewGugu] = useState('');
@@ -30,25 +29,25 @@ const Home = () => {
   return (
     <div className="container">
       <header>
-        <img src="/gugu.png" alt="Foto do gugu" style={{ width: '50px', height: '50px', marginRight: '10px' }} />
+        <img className="user-photo" src="/gugu.png" alt="Foto do gugu" />
       </header>
       <main>
-        <section className="tweetar" style={{ alignItems: 'center', justifyContent: 'space-between', padding: '10px' }}>
-          <form onSubmit={handleGugu} style={{ display: 'flex', alignItems: 'center' }}>
-            <img src="/gugu.png" alt="Foto do gugu" style={{ width: '50px', height: '50px', marginRight: '10px' }} />
-            <input type="text" placeholder="Gugu?" value={newGugu} onChange={handleInputChange} onKeyDown={handleKeyDown} style={{ flex: 1, marginRight: '10px' }} />
-            <button onClick={handleGugu} disabled={newGugu !== gugu} style={{ padding: '10px 20px', backgroundColor: newGugu !== gugu ? 'gray' : 'blue' }}>Gugu</button>
+        <section className="tweetar">
+          <form onSubmit={handleGugu} className="tweetar-form">
+            <img className="user-photo" src="/gugu.png" alt="Foto do gugu" />
+            <input className="tweetar-input" type="text" placeholder="Gugu?" value={newGugu} onChange={handleInputChange} onKeyDown={handleKeyDown} />
+            <button className="tweetar-button" onClick={handleGugu} disabled={newGugu !== gugu}>Gugu</button>
           </form>
         </section>
         <section className="feed">
           <div>
             <h2>Feed de Gugu</h2>
             {gugus.map((gugu, index) => (
-              <div className="tweet" key={index} style={{ display: 'flex', alignItems: 'flex-start' }}>
-                <img src="/gugu.png" alt="Foto do gugu" style={{ width: '50px', height: '50px', marginRight: '10px' }} />
+              <div className="tweet" key={index}>
+                <img className="user-photo" src="/gugu.png" alt="Foto do gugu" />
                 <div>
-                  <p style={{ margin: 0 }}>@Gugu</p>
-                  <p style={{ marginTop: '4px' }}>{gugu}</p>
+                  <p>@Gugu</p>
+                  <p>{gugu}</p>
                 </div>
               </div>
             ))}
