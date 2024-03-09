@@ -33,9 +33,9 @@ const Home = () => {
         <img src="/gugu.png" alt="Foto do gugu" style={{ width: '50px', height: '50px', marginRight: '10px' }} />
       </header>
       <main>
-        <section className="tweetar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px' }}>
-          <img src="/gugu.png" alt="Foto do gugu" style={{ width: '50px', height: '50px', marginRight: '10px' }} />
-          <form onSubmit={handleGugu}>
+        <section className="tweetar" style={{ alignItems: 'center', justifyContent: 'space-between', padding: '10px' }}>
+          <form onSubmit={handleGugu} style={{ display: 'flex', alignItems: 'center' }}>
+            <img src="/gugu.png" alt="Foto do gugu" style={{ width: '50px', height: '50px', marginRight: '10px' }} />
             <input type="text" placeholder="Gugu?" value={newGugu} onChange={handleInputChange} onKeyDown={handleKeyDown} style={{ flex: 1, marginRight: '10px' }} />
             <button onClick={handleGugu} disabled={newGugu !== gugu} style={{ padding: '10px 20px', backgroundColor: newGugu !== gugu ? 'gray' : 'blue' }}>Gugu</button>
           </form>
