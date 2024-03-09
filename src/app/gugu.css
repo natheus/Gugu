@@ -1,9 +1,11 @@
+/* Estilos gerais */
 body, html {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: #f5f8fa;
   color: #14171a;
 }
 
+/* Cabeçalho */
 header {
   background-color: #fff;
   border-bottom: 1px solid #e1e8ed;
@@ -16,6 +18,7 @@ header h1 {
   font-weight: bold;
 }
 
+/* Área principal */
 main {
   display: flex;
   flex-direction: column;
@@ -23,6 +26,7 @@ main {
   padding: 20px;
 }
 
+/* Seção de tweetar */
 section:first-child {
   background-color: #fff;
   border: 1px solid #e1e8ed;
@@ -50,6 +54,7 @@ button {
   cursor: pointer;
 }
 
+/* Seção do feed de tweets */
 section:last-child {
   background-color: #fff;
   border: 1px solid #e1e8ed;
@@ -64,6 +69,7 @@ section:last-child h2 {
   margin-bottom: 10px;
 }
 
+/* Tweet individual */
 div > div {
   border-bottom: 1px solid #e1e8ed;
   padding: 10px 0;

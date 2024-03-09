@@ -1,95 +1,62 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import React, { useState } from 'react';
+import './gugu.css';
 
-export default function Home() {
+//use client
+const Home = () => {
+  const [gugus, setGugus] = useState<string[]>([]);
+  const [newGugu, setNewGugu] = useState('');
+  const gugu = 'Gugu';
+
+  const handleGugu = () => {
+    setGugus([...gugus, newGugu]);
+    setNewGugu('');
+  };
+
+  const handleInputChange = (e: { target: { value: string; }; }) => {
+    const userInput = e.target.value;
+    if (userInput.length <= gugu.length) {
+      const newGuguValue = gugu.slice(0, userInput.length);
+      setNewGugu(newGuguValue);
+    }
+  };
+
+  const handleKeyDown = (e: { key: any; }) => {
+    if (e.key === 'Enter' && newGugu === gugu) {
+      handleGugu();
+    }
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    <div className="container">
+      <header>
+        <img src="/gugu.png" alt="Foto do gugu" style={{ width: '50px', height: '50px', marginRight: '10px' }} />
+      </header>
+      <main>
+        <section className="tweetar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px' }}>
+          <img src="/gugu.png" alt="Foto do gugu" style={{ width: '50px', height: '50px', marginRight: '10px' }} />
+          <form onSubmit={handleGugu}>
+            <input type="text" placeholder="Gugu?" value={newGugu} onChange={handleInputChange} onKeyDown={handleKeyDown} style={{ flex: 1, marginRight: '10px' }} />
+            <button onClick={handleGugu} disabled={newGugu !== gugu} style={{ padding: '10px 20px', backgroundColor: newGugu !== gugu ? 'gray' : 'blue' }}>Gugu</button>
+          </form>
+        </section>
+        <section className="feed">
+          <div>
+            <h2>Feed de Gugu</h2>
+            {gugus.map((gugu, index) => (
+              <div className="tweet" key={index} style={{ display: 'flex', alignItems: 'flex-start' }}>
+                <img src="/gugu.png" alt="Foto do gugu" style={{ width: '50px', height: '50px', marginRight: '10px' }} />
+                <div>
+                  <p style={{ margin: 0 }}>@Gugu</p>
+                  <p style={{ marginTop: '4px' }}>{gugu}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
+    </div>
   );
-}
+};
+
+export default Home;
